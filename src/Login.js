@@ -15,28 +15,12 @@ const Login = () => {
       setError("");
       return;
     }
-    setError("Email is not valid");
+    setError("メールアドレスが有効ではありません");
     return false;
-  };
-
-  const resetForm = () => {
-    setEmail("");
-    setPassword("");
-    setShowUser(false);
   };
 
   return (
     <>
-      {showUser && (
-        <Alert data-testid="user" variant="success">
-          {email}
-        </Alert>
-      )}
-      {error && (
-        <Alert data-testid="error" variant="danger">
-          {error}
-        </Alert>
-      )}
       <Form onSubmit={handleSubmit} noValidate>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>メールアドレス</Form.Label>
@@ -58,16 +42,19 @@ const Login = () => {
           />
         </Form.Group>
 
+        {showUser && (
+          <Alert data-testid="user" variant="success">
+            {email}
+          </Alert>
+        )}
+        {error && (
+          <Alert data-testid="error" variant="danger">
+            {error}
+          </Alert>
+        )}
+
         <Button data-testid="submit" variant="primary" type="submit">
           送信
-        </Button>
-        <Button
-          variant="secondary"
-          data-testid="reset"
-          onClick={resetForm}
-          style={{ marginLeft: "5px" }}
-        >
-          リセット
         </Button>
       </Form>
     </>

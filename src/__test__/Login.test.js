@@ -7,7 +7,7 @@ describe("Test the Login Component", () => {
     render(<Login />);
     const buttonList = await screen.findAllByRole("button");
     // console.log(buttonList);
-    expect(buttonList).toHaveLength(2); //ボタンが２つあるかテスト
+    expect(buttonList).toHaveLength(1); //ボタンが２つあるかテスト
   });
 
   test("should be failed on email validation", () => {
@@ -32,18 +32,6 @@ describe("Test the Login Component", () => {
     render(<Login />);
     const password = screen.getByPlaceholderText("パスワード入力");
     expect(password).toHaveAttribute("type", "password");
-  });
-
-  //フォームがリセットできるか確認
-  test("should be able to reset the form", () => {
-    const { getByTestId } = render(<Login />);
-    const resetBtn = getByTestId("reset");
-    const email = screen.getByPlaceholderText("メールアドレス入力");
-    const password = screen.getByPlaceholderText("パスワード入力");
-
-    userEvent.click(resetBtn); //コードが自動でクリックしてくれるみたいな。
-    expect(email.value).toMatch("");
-    expect(password.value).toMatch("");
   });
 
   test("should be able to submit the form", () => {
